@@ -1,7 +1,7 @@
 # Data Warehouse and Analytics Project
 
 Welcome to my version of the Data Warehouse and Analytics Project! 🚀
-This project is a guided learning experience built while following an incredible tutorial by a seasoned data professional on **[YouTube]**. The project showcases the process of building a data warehouse from scratch, implementing ETL pipelines, and deriving actionable insights — all with a hands-on, industry-relevant approach.
+This project is a guided learning experience built while following an incredible tutorial by a seasoned data professional on **YouTube**. The project showcases the process of building a data warehouse from scratch, implementing ETL pipelines, and deriving actionable insights — all with a hands-on, industry-relevant approach.
 
 ---
 
