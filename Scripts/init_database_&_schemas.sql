@@ -27,7 +27,7 @@ This is useful during development or iterative testing phases, not for productio
 USE master;
 GO
 
--- 🔄 Check if 'DataWarehouse' exists and drop it if so (with rollback)
+-- Check if 'DataWarehouse' exists and drop it if so (with rollback)
 IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'DataWarehouse')
 BEGIN
     -- Force single-user mode to disconnect any active sessions
@@ -36,7 +36,7 @@ BEGIN
 END;
 GO
 
--- 🆕 Create a fresh 'DataWarehouse' database
+-- Create a fresh 'DataWarehouse' database
 CREATE DATABASE DataWarehouse;
 GO
 
@@ -44,7 +44,7 @@ GO
 USE DataWarehouse;
 GO
 
--- 🏗️ Create schemas representing each Medallion layer
+-- Create schemas representing each Medallion layer
 CREATE SCHEMA bronze;  -- For raw, unprocessed data
 GO
 
