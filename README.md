@@ -43,7 +43,7 @@ All the tools I used are open source or free to use:
 - **🔧 [GitHub](https://github.com/):** for version control and project documentation.
 - **🎨 [DrawIO](https://www.drawio.com/):** to design data flows and architecture.
 - **🧠 [Notion](https://www.notion.com/):** for organizing project steps
-- **📋 [Step-by-Step Project Tasks](https://www.notion.so/Data-Warehouse-Project-22c3e2a31005806b8e59c3510c87dde9):** Access to All Project Phases and Tasks.
+- **📋 [Step-by-Step Project Tasks](https://www.notion.so/Data-Warehouse-Project-22c3e2a31005806b8e59c3510c87dde9?source=copy_link):** Access to All Project Phases and Tasks.
 
 ---
 
