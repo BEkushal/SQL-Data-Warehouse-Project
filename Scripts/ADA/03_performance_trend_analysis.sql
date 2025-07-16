@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-Performance Analysis (YoY & MoM Trends)
+Performance Analysis (Year-on-Year Trends)
 ===============================================================================
 Purpose:
     - To measure performance across different time frames (year-over-year, month-over-month).
