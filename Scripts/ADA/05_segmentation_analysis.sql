@@ -58,7 +58,8 @@ ORDER BY product_count DESC
 And find the total number of customers by each group
 */
 
-WITH customer_spending AS
+-- Single CTE with Sub-Query Approach
+WITH customer_spending AS --------------------------------------- The customer spending and lifespan is computed (1)
 (
 	SELECT
   		c.customer_key,
@@ -74,7 +75,7 @@ WITH customer_spending AS
 SELECT
   	customer_segment,
   	COUNT(customer_key) AS customers
-FROM
+FROM -------------------------------------------------- Customers counted from the segmented_customers (3)
 (
   	SELECT
   		customer_key,
@@ -85,6 +86,40 @@ FROM
   			 ELSE 'New'
   		END AS customer_segment
   	FROM customer_spending
-) AS segmented_customers
+) AS segmented_customers ----------------------------------------------- Customers are segmeted based spending and lifespan from the CTE customer_spending (2)
+GROUP BY customer_segment
+ORDER BY customers DESC
+
+
+-- Multiple CTE's approach
+WITH customer_spending AS ----------------------------------- The customer spending and lifespan is computed (1)
+(
+	SELECT
+		c.customer_key,
+		SUM(s.sales_amount) AS total_spending,
+		MIN(s.order_date) AS first_order_date,
+		MAX(s.order_date) AS last_order_date,
+		DATEDIFF(MONTH,MIN(s.order_date),MAX(s.order_date)) AS lifespan
+	FROM gold.fact_sales AS s
+	LEFT JOIN gold.dim_customers AS c
+	ON s.customer_key = c.customer_key
+	GROUP BY c.customer_key
+),
+segmented_customers AS ---------------------------------------- Customers are segmeted based spending and lifespan from the CTE customer_spending (2)
+(
+	SELECT
+		customer_key,
+		total_spending,
+		lifespan,
+		CASE WHEN lifespan >= 12 AND total_spending > 5000 THEN 'VIP'
+			 WHEN lifespan >= 12 AND total_spending <= 5000 THEN 'Regular'
+			 ELSE 'New'
+		END AS customer_segment
+	FROM customer_spending
+)
+SELECT
+	customer_segment,
+	COUNT(customer_key) AS customers
+FROM segmented_customers ----------------------------------------------- Customers counted from the segmented_customers CTE (3)
 GROUP BY customer_segment
 ORDER BY customers DESC
