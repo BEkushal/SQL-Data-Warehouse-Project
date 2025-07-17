@@ -1,24 +1,35 @@
 # Data Warehouse and Analytics Project
 
-Welcome to my version of the Data Warehouse and Analytics Project! 🚀
-This project is a guided learning experience built while following an incredible tutorial by a seasoned data professional on **YouTube**. The project showcases the process of building a data warehouse from scratch, implementing ETL pipelines, and deriving actionable insights — all with a hands-on, industry-relevant approach.
+Welcome to a complete **Retail Data Warehouse and Analytics Project** 🚀
+The project was designed and developed to simulate real-world data processes as expected in professional data analyst roles. 
+It covers both data engineering (**ETL**) and analytics tasks: from creating a scalable data warehouse to performing advanced analytical techniques that yield actionable insights.
 
 ---
+
+## Overview
+
+The project is structured into two major components:
+
+1. **Data Warehouse (DW) Design & Development**
+2. **Advanced Data Analysis (ADA)** using SQL
+
+Together, they form a complete data backbone for business insights and decision-making.
 
 ## 🏗️ Data Architecture
 
 This project follows the **Medallion Architecture**- a structured approach using **Bronze**, **Silver**, and **Gold** layers to design scalable and maintainable data solutions.
+
 ![Data Architecture](https://github.com/user-attachments/assets/90562c9a-e28c-40e6-a3da-ca77dc4528a3)
 
 1. **Bronze Layer**: Ingests raw data from CSV files into SQL Server (ERP and CRM datasets).
 2. **Silver Layer**: Cleanses, standardizes, and transforms the data for quality and consistency.
-3. **Gold Layer**: Refines the data into business-ready models (star schema) for reporting and analytics.
+3. **Gold Layer**: Constructs business-ready analytical views using a star schema model - the foundation for analytics and reporting.
 
 ---
 
 ## 📖 What This Project Covers
 
-This hands-on project is helping me learn and apply:
+Key Focus Areas:
 
 1. **Data Architecture Design** using the **Medallion approach**.
 2. **ETL Pipeline** Creation to extract, transform, and load data using SQL.
@@ -47,9 +58,35 @@ All the tools I used are open source or free to use:
 
 ---
 
-## 🚀 Project Requirements (As I Understood & Applied Them)
+## 🚀 Project Distribution 
 
-### ✅ Data Engineering – Building the Warehouse
+### 📂 Repository Structure
+
+```
+data-warehouse-project/
+│
+├── Datasets/                           # Raw datasets used for the project (ERP and CRM data)
+│
+├── docs/                               # Project documentation and architecture details
+│   ├── Data-Integration.png            # Draw.io file shows the ERP and CRM integration with lablings (customer, product & sales) 
+│   ├── Data-Model.png                  # Draw.io file for data models (star schema)
+│   ├── Data-lineage.png                # Draw.io file for the data flow diagram
+│   ├── data_catalog.md                 # Catalog of datasets, including field descriptions and metadata
+│
+├── scripts/                            # SQL scripts for ETL (database & schemas DDL), transformations and advanced data analytics 
+│   ├── ADA/                            # Scripts involving advanced data analysis (part-to-whole, data segmentation etc)
+|   ├── EDA/                            # Scripts involving inital explorations for advanced analysis (dimensions, measures etc)
+|   ├── bronze/                         # Scripts for extracting and loading raw data
+│   ├── gold/                           # Scripts for creating analytical models
+│   ├── silver/                         # Scripts for cleaning and transforming data
+│
+├── tests/                              # Test scripts and quality files (silver & gold)
+│
+├── README.md                           # Project overview and instructions
+├── LICENSE                             # License information for the repository
+```
+
+### ✅ 1. Data Engineering – Data Warehouse Build
 
 #### Goal:
 Build a SQL Server-based data warehouse using ERP and CRM data to consolidate and analyze sales data enabling data driven decision making.
@@ -63,15 +100,69 @@ Build a SQL Server-based data warehouse using ERP and CRM data to consolidate an
 
 ---
 
-### 📊 BI & Analytics – Making Sense of the Data
+### 📊 2. Data Analytics (EDA + ADA) – Making Sense of the Data
 
 #### Goal:
-Develop SQL scripts to uncover insights into:
+Building upon the Gold Layer views, develop SQL scripts to uncover insights into:
 - **Customer Behavior**
 - **Product-level Performance**
 - **Sales Trends and KPIs**
 
-The end goal is to support data-driven decisions through clear, focused reporting.
+#### 🔍 Exploratory Data Analysis (EDA)
+
+* **Dimension Exploration:** Product categories, subcategories, customer age, and region.
+* **Measure Exploration:** Sales amount, quantity, discounts, and pricing.
+* **Date Analysis:** Sales by order date, monthly trends, seasonal patterns.
+* **Ranking Analysis:** Identifying top customers, products, and high-volume order channels.
+
+### 📈 Advanced Data Analysis (ADA)
+
+* **Cumulative KPIs:** Moving averages, running totals for sales, quantity, and revenue.
+* **Part-to-Whole Analysis:**
+
+  * Example: The "Bikes" category dominates with ``96.46%`` of total sales.
+  * "Clothing" and "Accessories" contribute just ``1.16%`` and ``2.39%`` respectively.
+* **Performance Over Time:** Evaluates Year On Year (YoY) or Month On Month (MoM) sales to product performance trends and analysis.
+* **Customer Segmentation:**
+  * Based on customer lifecycle (association span) and monetary spend:
+    *  **Association Span**: Time between their first and last order.
+    *  **Spending Behavior**: Total revenue generated.
+    *  Using these two metrics:
+
+      | Segment   | Criteria                                       | Count  |
+      |-----------|------------------------------------------------|--------|
+      | New       | Span < 12 months                               | 14631  |
+      | Regular   | Span ≥ 12 months AND Spending ≤ 5000 units     | 2198   |
+      | VIP       | Span ≥ 12 months AND Spending > 5000 units     | 1655   |
+    
+---
+
+### 📝 Business Reporting
+
+Two reports are built to provide a holistic understanding of business performance:
+
+* **Customer Report:**
+
+  * Total orders, total revenue, customer segmentation, order recency, average spend, and customer lifetime value.
+
+* **Product Report:**
+
+  * Sales distribution by category/subcategory, quantity sold, revenue KPIs, and product segmentation by performance.
+
+These reports are modeled as SQL views to support further dashboarding and BI consumption.
+
+---
+
+
+## 🔮 Future Scope
+
+The next logical step is integrating this solution with a BI tool (e.g., **Power BI**, **Tableau**) using the gold-layer SQL views as the data source. This enables:
+
+* **Interactive Dashboards** for executive reporting.
+* **Real-time Monitoring** through scheduled view refreshes.
+* **Forecasting Models** using historical trends from ADA scripts.
+
+This foundation is BI-ready and designed for seamless visualization and storytelling.
 
 ---
 
