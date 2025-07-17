@@ -62,7 +62,6 @@ SELECT
     DATEDIFF(MONTH, MIN(order_date), MAX(order_date)) AS lifespan,
     MAX(order_date) AS last_sale_date,
     COUNT(DISTINCT order_number) AS total_orders,
-    COUNT(DISTINCT customer_key) AS total_customers,
     SUM(sales_amount) AS total_sales,
     SUM(quantity) AS total_quantity,
     ROUND(AVG(CAST(sales_amount AS FLOAT) / NULLIF(quantity, 0)),1) AS avg_selling_price
